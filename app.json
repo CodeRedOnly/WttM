@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "WttM-React",
-    "slug": "WttM-React",
+    "name": "WttM",
+    "slug": "WttM",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -1,0 +1,13 @@
+{
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "semi": "off",
+    "quotes": "off",
+    "indent": "off",
+    "comma-dangle": "off",
+
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "eqeqeq": "warn"
+  }
+}
