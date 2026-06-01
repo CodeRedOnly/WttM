@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { JollyLodger_400Regular } from "@expo-google-fonts/jolly-lodger";
 import Button from '@/components/Button'
 
-const logo = require('@/assets/images/app-logo3x.png');
+const logo = require('@/assets/icons/android/icon-512.png');
 
 export default function Index() {
   const [loaded, error] = useFonts({
