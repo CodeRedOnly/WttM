@@ -1,6 +1,8 @@
 import { CardData } from "./Card";
 
-const suits = ["robot", "energy", "plant", "water", "astronaut", "schedule"];
+export type suit = "robot" | "energy" | "plant" | "water" | "astronaut" | "schedule";
+
+const suits : suit[] = ["robot", "energy", "plant", "water", "astronaut", "schedule"];
 
 const values = [
   [1, 1, 0, 0, 2, 1, 1, 2, 1, 1, 2, 0, 0, 1, 1],
@@ -24,7 +26,18 @@ export function createDeck(): CardData[] {
   return cards;
 }
 
+export function shuffleDeck (deck: CardData[]) : CardData[] {
+  const newDeck = [...deck];
+  for (let i = newDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
+  }
 
-export function drawCards(deck: CardData[], count: number) {
-  return deck.slice(0, count);
+  return newDeck;
+}
+
+export function drawCards(deck: CardData[], count: number) : CardData[][] {
+  const drawn = deck.slice(0, count);
+  const newDeck = deck.slice(count);
+  return [ drawn, newDeck ];
 }
