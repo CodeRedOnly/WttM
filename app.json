@@ -4,24 +4,28 @@
     "slug": "WttM",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icons/android/icon-1024.png",
     "scheme": "wttmreact",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/icons/ios/icon-1024.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#0c111c",
+        "foregroundImage": "./assets/icons/android/icon-1024a.png"
       },
       "predictiveBackGestureEnabled": false
     },
+    "splash": {
+      "image": "./assets/icons/android/icon-1024.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0c111c"
+    },
     "web": {
+      "name": "WttM",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/icons/android/icon-48.png"
     },
     "plugins": [
       "expo-router",
