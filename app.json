@@ -8,19 +8,16 @@
     "scheme": "wttmreact",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/icons/ios/icon-1024.png"
+      "icon": "./assets/icons/ios/icon-1024.png",
+      "bundleIdentifier": "com.codereddevelopment.wttm"
     },
     "android": {
+      "package": "com.codereddevelopment.wttm",
       "adaptiveIcon": {
         "backgroundColor": "#0c111c",
         "foregroundImage": "./assets/icons/android/icon-foreground.png"
       },
       "predictiveBackGestureEnabled": false
-    },
-    "splash": {
-      "image": "./assets/icons/android/icon-foreground.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0c111c"
     },
     "web": {
       "name": "WttM",
@@ -44,6 +41,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ddcae00d-1da1-448a-83ef-fcd8a4caf5e7"
+      }
     }
   }
 }

@@ -43,5 +43,4 @@ container: {
   backgroundColor: "#0c111c",
   alignItems: "center",
   justifyContent: "center",
-  
 },});

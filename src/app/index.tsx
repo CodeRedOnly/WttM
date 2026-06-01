@@ -14,17 +14,17 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: ''}}>  
-        <Image source={ logo } />
-        <Text style={ styles.h1 }>WttM</Text>
-        <View style={ styles.buttons }>
+      <Stack.Screen options={{ title: ''}} />  
+      <Image source={ logo } style={{ height: '50%', aspectRatio: 1 }}/>
+      <Text style={ styles.h1 }>WttM</Text>
+      <View style={ styles.footer }>
         <Button label="Let's Start" icon="moon-o" onPress={() => router.push('./game')}/>
-        </View>
         <Text style={ styles.disclaimer }>
           This app has no affiliation with Blue Cocker, Dude Games, Benoit Turpin, Alexis Allard, or Anne Heidsieck.
           All copyrights belong to their original owners.
-        </Text>
-      </Stack.Screen>
+        </Text>  
+      </View>
+      
     </View>
   );
 }
@@ -34,20 +34,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0c111c",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     
   },
   h1: {
     fontSize: 64,
     color: '#c4dce6',
     fontFamily: 'JollyLodger_400Regular',
+    textAlign: 'center',
   },
-  buttons: {},
+  footer: {
+    width: '100%',
+    alignItems: 'center',
+    gap: 12, // or marginTop if needed
+  },
+
   disclaimer: {
-    position: 'absolute',
     fontSize: 12,
-    bottom: 15,
     color: '#c4dce6',
     alignItems: "center",
+    paddingHorizontal: 20,
   }
 });
