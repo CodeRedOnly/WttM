@@ -13,12 +13,12 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#0c111c",
-        "foregroundImage": "./assets/icons/android/icon-1024a.png"
+        "foregroundImage": "./assets/icons/android/icon-foreground.png"
       },
       "predictiveBackGestureEnabled": false
     },
     "splash": {
-      "image": "./assets/icons/android/icon-1024.png",
+      "image": "./assets/icons/android/icon-foreground.png",
       "resizeMode": "contain",
       "backgroundColor": "#0c111c"
     },
