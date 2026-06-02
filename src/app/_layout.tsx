@@ -2,6 +2,12 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar"
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { JollyLodger_400Regular } from "@expo-google-fonts/jolly-lodger";
+
+SplashScreen.preventAutoHideAsync();
+
 
 export default function RootLayout() {
   useEffect(() => {
@@ -9,6 +15,14 @@ export default function RootLayout() {
       document.title = 'WttM';
     }
   }, []);
+
+  const [loaded] = useFonts({ JollyLodger_400Regular });  
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
 
   return (
     <>  

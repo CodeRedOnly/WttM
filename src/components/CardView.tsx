@@ -1,6 +1,8 @@
 import { Image } from "expo-image";
 import { View, StyleSheet, Text } from "react-native";
 import { CardData } from "@/game/Card";
+import { useWindowDimensions } from "react-native";
+
 
 type Props = {
   cards: CardData[]  
@@ -16,13 +18,27 @@ const images = {
 };
 
 export default function CardView({ cards }: Props) {
+  const { width } = useWindowDimensions();  
   const [{suit: nextSuit, value}, {suit, }] = cards;
+
+  
+  let cardWidth;
+  
+  if (width > 800) {
+    cardWidth = 100; // ✅ fixed size for desktop
+  } else {
+    cardWidth = width * 0.28; // ✅ mobile scaling
+  }
+  
+  const cardHeight = cardWidth * 1.6;
+
+
   return (
     <>
-      <View style={styles.card}>
+      <View style={[styles.card, {width: cardWidth, height: cardHeight}]}>
         <View style={styles.top}>
           <Image source={images[nextSuit]} style={styles.previewImage} />          
-          <Text style={styles.value}>{value}</Text>
+          <Text style={[styles.value, { fontSize: cardWidth * 0.35 }]}>{value}</Text>
         </View>
         <Image source={images[suit]} style={styles.image} />
       </View>
@@ -38,8 +54,6 @@ const styles = StyleSheet.create({
     borderRadius: 9,
     borderStyle: "solid",
     borderWidth: 2,
-    width: 100,
-    height: 165,
     paddingTop: 10,
     marginBottom: 10,
     alignItems: "center"
@@ -55,8 +69,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginTop: 10,
-    width: 50,
-    height: 50,
+    width: '50%',
+    aspectRatio: 1,
     borderRadius: 9,
   },
   value: {
@@ -64,9 +78,9 @@ const styles = StyleSheet.create({
     fontSize: 36,
   },
   previewImage: {
-    width: 16,
-    height: 22,
+    width: '25%',
+    aspectRatio: 1,
     borderRadius: 18,
-    opacity: 0.5,
+    opacity: 0.66,
   }
 })

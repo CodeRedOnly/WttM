@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#0c111c",
     alignItems: "center",
     justifyContent: "space-evenly",
-    
   },
   h1: {
     fontSize: 64,

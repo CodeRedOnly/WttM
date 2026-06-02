@@ -9,10 +9,10 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/icons/ios/icon-1024.png",
-      "bundleIdentifier": "com.codereddevelopment.wttm"
+      "bundleIdentifier": "com.codereddevelopment.wttm2"
     },
     "android": {
-      "package": "com.codereddevelopment.wttm",
+      "package": "com.codereddevelopment.wttm2",
       "adaptiveIcon": {
         "backgroundColor": "#0c111c",
         "foregroundImage": "./assets/icons/android/icon-foreground.png"
@@ -29,10 +29,10 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#0c111c",
           "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
+            "image": "./assets/icons/icon-splash.png",
+            "resizeMode": "contain"
           }
         }
       ],
