@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
-import { StyleSheet, View, Text } from "react-native";
-import { Stack } from "expo-router"
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Stack, useRouter } from "expo-router"
 import { createDeck, drawCards, shuffleDeck } from '@/game/Deck'
 import { CardData } from '@/game/Card';
+import About from '@/components/About';
 import CardView from '@/components/CardView'
 import Button from '@/components/Button'
 import { JollyLodger_400Regular } from "@expo-google-fonts/jolly-lodger";
@@ -12,7 +14,9 @@ export default function Game () {
   const [loaded, error] = useFonts({
     JollyLodger_400Regular
   });
-  
+  const router = useRouter();
+  const [showAbout, setShowAbout] = useState<boolean>(false);
+
   const [deck, updateDeck] = useState<CardData[]>(shuffleDeck(createDeck()));
   const [hand, updateHand] = useState<CardData[]>([]);
   
@@ -35,7 +39,31 @@ export default function Game () {
   return (
     <>
       <View style={styles.container}>
-        <Stack.Screen options={{ title: ''}}/>
+        <Stack.Screen 
+          options={{ 
+            title: '',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => {
+                router.replace('/');
+              }}>
+              <FontAwesome
+                  name='arrow-left'
+                  color="#c4dce6"
+                  style={[{marginLeft:15}, styles.header_button]}
+                />                
+              </TouchableOpacity>
+            ),
+        
+            headerRight: () => (
+              <TouchableOpacity onPress={() => setShowAbout(true)}>
+                <FontAwesome
+                  name='info-circle'
+                  color="#c4dce6"
+                  style={[{marginRight: 15}, styles.header_button]}
+                />
+              </TouchableOpacity>
+            ),
+         }} />
         <View style={{ width: "100%", flexDirection: 'row', justifyContent: "center"}}>
           <Text style={styles.h1} selectable={false}>Drawn Cards</Text>
           <Button label="Shuffle" 
@@ -53,8 +81,8 @@ export default function Game () {
         <View>
           <Button label="Draw Next" icon="arrow-circle-o-right" onPress={handleDraw}/>
         </View>
-      
       </View>
+      <About isVisible={showAbout} onClose={() => setShowAbout(false)}/>
     </>  
   );
 }
@@ -74,4 +102,7 @@ const styles = StyleSheet.create({
   shuffle: {
 
   },
+  header_button: {
+    fontSize: 22
+  }
 });
