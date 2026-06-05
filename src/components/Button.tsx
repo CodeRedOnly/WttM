@@ -1,33 +1,38 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 type IconName = keyof typeof FontAwesome.glyphMap;
 
 type Props = {
+  
   label: string;
   icon: IconName;
   onPress?: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  iconStyle?: StyleProp<TextStyle>;
 };
 
-export default function Button ({label, icon, onPress} :Props) {
+export default function Button ({label, icon, onPress, containerStyle, buttonStyle, labelStyle, iconStyle} :Props) {
   return (
     <View
       style={[
         styles.buttonContainer,
         { borderWidth: 4, borderColor: "#c4dce6", borderRadius: 18 },
+        containerStyle
       ]}
     >
       <Pressable
-        style={[styles.button, { backgroundColor: "#fff" }]}
+        style={[styles.button, buttonStyle]}
         onPress={onPress}
       >
         <FontAwesome
           name={icon}
-          size={18}
           color="#25292e"
-          style={styles.buttonIcon}
+          style={[styles.buttonIcon, iconStyle]}
         />
-        <Text style={[styles.buttonLabel, { color: "#25292e" }]}>
+        <Text style={[styles.buttonLabel, labelStyle]} selectable={false}>
           {label}
         </Text>
       </Pressable>
@@ -51,13 +56,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    backgroundColor: "white"
   },
   buttonIcon: {
     paddingRight: 8,
     fontSize: 22,
   },
   buttonLabel: {
-    color: "#fff",
+    color: "#25292e",
     fontSize: 24,
   },
 });
