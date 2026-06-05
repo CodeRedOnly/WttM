@@ -38,9 +38,9 @@ export default function CardView({ cards }: Props) {
       <View style={[styles.card, {width: cardWidth, height: cardHeight}]}>
         <View style={styles.top}>
           <View style={{ alignItems: "flex-end", width: "100%", paddingRight: 10 }}>
-            <Image source={images[nextSuit]} style={styles.previewImage} />          
+            <Image source={images[nextSuit]} style={styles.previewImage}/>          
           </View>
-          <Text style={[styles.value, { fontSize: cardWidth * 0.35 }]}>{value}</Text>
+          <Text style={[styles.value, { fontSize: cardWidth * 0.35 }]} selectable={false}>{value}</Text>
         </View>
         <Image source={images[suit]} style={styles.image} />
       </View>
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     width: '50%',
     aspectRatio: 1,
     borderRadius: 9,
+    userSelect: 'none',
   },
   value: {
     color: '#fff',
@@ -85,5 +86,6 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 18,
     opacity: 0.66,
+    userSelect: 'none'
   }
 })

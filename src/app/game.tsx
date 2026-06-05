@@ -19,11 +19,15 @@ export default function Game () {
   function handleDraw () {
     const [ drawn, remaining ] = drawCards(deck, 3);
     if (remaining.length === 0) {
-      updateDeck(shuffleDeck(createDeck()));  
+      reshuffle();
     } else {  
       updateDeck(remaining);
     }
     updateHand(drawn);
+  }
+
+  function reshuffle () {
+    updateDeck(shuffleDeck(createDeck()));    
   }
 
   useEffect(handleDraw, []);
@@ -31,28 +35,43 @@ export default function Game () {
   return (
     <>
       <View style={styles.container}>
-        <Stack.Screen options={{ title: ''}}>
-          <Text style={styles.h1}>Drawn Cards</Text>            
-          <View>
-            { hand.map( (card, index) => <CardView key={index} cards={ [deck[index], card] }/>) }
-          </View>
-          <View>
-            <Button label="Draw Next" icon="arrow-circle-o-right" onPress={handleDraw}/>
-          </View>
-        </Stack.Screen>
+        <Stack.Screen options={{ title: ''}}/>
+        <View style={{ width: "100%", flexDirection: 'row', justifyContent: "center"}}>
+          <Text style={styles.h1} selectable={false}>Drawn Cards</Text>
+          <Button label="Shuffle" 
+                  icon="retweet" 
+                  onPress={reshuffle}
+                  containerStyle={{ position: 'absolute', borderWidth: 0, width: 90, height: 50, right: 0}}
+                  buttonStyle={styles.shuffle}
+                  labelStyle={{ fontSize: 12 }}
+                  iconStyle={{ fontSize: 15 }}
+          />
+        </View>
+        <View>
+          { hand.map( (card, index) => <CardView key={index} cards={ [deck[index], card] }/>) }
+        </View>
+        <View>
+          <Button label="Draw Next" icon="arrow-circle-o-right" onPress={handleDraw}/>
+        </View>
+      
       </View>
     </>  
   );
 }
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
-  backgroundColor: "#0c111c",
-  alignItems: "center",
-  justifyContent: "flex-start",
-},h1: {
-  fontSize: 42,
-  color: '#c4dce6',
-  fontFamily: 'JollyLodger_400Regular',
-  textAlign: 'center',
-},});
+  container: {
+    flex: 1,
+    backgroundColor: "#0c111c",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  h1: {
+    fontSize: 42,
+    color: '#c4dce6',
+    fontFamily: 'JollyLodger_400Regular',
+    textAlign: 'center',
+  },
+  shuffle: {
+
+  },
+});
