@@ -36,7 +36,7 @@ export default function About({ isVisible, onClose }: Props) {
                   On the screen, you will see three <Text style={{fontWeight: 'bold'}}>Values</Text> and three <Text style={{fontWeight: 'bold'}}>Resources</Text>.
                 </Text> 
                 <Text style={styles.body}>
-                  Choose one of the values, and one of the resources.  They do not need to come from the came displayed card.  Write your value on your card, and use
+                  Choose one of the values, and one of the resources.  They do not need to come from the same displayed card.  Write your value on your card, and use
                   the resource's benefit.
                 </Text>
                 <Text style={styles.body}>
@@ -48,7 +48,7 @@ export default function About({ isVisible, onClose }: Props) {
                 </Text>
                 <Text style={styles.body}>
                   The deck will be reshuffled automatically as draws continue.  
-                  If at any point you want to completely reset the deck, you an press the <Text style={{fontWeight: 'bold'}}>Shuffle</Text> button.
+                  If at any point you want to completely reset the deck, you can press the <Text style={{fontWeight: 'bold'}}>Shuffle</Text> button.
                 </Text>
                 <Text style={styles.body}>
                   <Text style={{fontWeight: 'bold' }}>Note:</Text> Shuffling returns the discard pile to the deck, which will affect overall card draw statistics if used frequently.
