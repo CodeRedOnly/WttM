@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useFonts } from "expo-font";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
@@ -17,24 +17,48 @@ export default function Game () {
   const router = useRouter();
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
+  const [history, setHistory] = useState<Array<CardData[]>>([]);
   const [deck, updateDeck] = useState<CardData[]>(shuffleDeck(createDeck()));
   const [hand, updateHand] = useState<CardData[]>([]);
+  const drawLock = useRef(false);
   
   function handleDraw () {
+    if (drawLock.current) return
+    drawLock.current = true;
+    if (hand.length > 0) setHistory(prev => [hand, ...prev]);
     const [ drawn, remaining ] = drawCards(deck, 3);
     if (remaining.length === 0) {
-      reshuffle();
+      updateDeck(shuffleDeck(createDeck()));
     } else {  
       updateDeck(remaining);
     }
     updateHand(drawn);
+    
+    Promise.resolve().then(() => {
+      drawLock.current = false;
+    });
   }
 
   function reshuffle () {
-    updateDeck(shuffleDeck(createDeck()));    
+    updateDeck(shuffleDeck(createDeck()));
+    setHistory([]);
   }
 
-  useEffect(handleDraw, []);
+  function previous () {
+    const currentHand = hand;
+    setHistory(prev => {
+      if (prev.length === 0) return prev;
+  
+      const [prevHand, ...rest] = prev;
+  
+      updateDeck(prevDeck => [...currentHand, ...prevDeck]);
+      updateHand(prevHand);
+  
+      return rest;
+    });
+  }
+
+  useEffect(() => { handleDraw(); }, []);
       
   return (
     <>
@@ -65,6 +89,16 @@ export default function Game () {
             ),
          }} />
         <View style={{ width: "100%", flexDirection: 'row', justifyContent: "center"}}>
+        {history.length > 0 && 
+          <Button label="Previous" 
+                  icon="arrow-left" 
+                  onPress={previous}
+                  containerStyle={{ position: 'absolute', borderWidth: 0, width: 90, height: 50, left: 0}}
+                  buttonStyle={styles.shuffle}
+                  labelStyle={{ fontSize: 12 }}
+                  iconStyle={{ fontSize: 15 }}
+            />
+          }
           <Text style={styles.h1} selectable={false}>Drawn Cards</Text>
           <Button label="Shuffle" 
                   icon="retweet" 
